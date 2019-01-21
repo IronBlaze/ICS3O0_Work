@@ -1,0 +1,88 @@
+import random
+ 
+cpu_score = 0
+player_score = 0
+tie_score = 0
+ 
+def end():
+  print('Thanks for playing!')
+  exit()
+ 
+def again():
+  ask = str.lower(input('Would you like to play again?'))
+  print('')
+  if ask == 'yes':
+    print('')
+    game()
+  elif ask == 'no':
+    print('')
+    end()
+  else:
+    print('')
+    print('What was that?')
+    print('')
+    again()
+   
+def game():
+  global tie_score, cpu_score, player_score
+  option = ['rock', 'paper', 'scissors']
+  comp = random.choice(option)
+  player = str.lower(input('Enter your choice.'))
+  print('')
+  if player == 'rock' or 'paper' or 'scissors':
+    print(("The computer threw {} against your {}!").format(comp, player))
+  print('')
+ 
+  if player == 'rock':
+    if comp == 'paper':
+      print('You lost!')
+      cpu_score += 1
+    elif comp == 'scissors':
+      print('You win!')
+      player_score += 1
+    else:
+      print('Tie!')
+      tie_score += 1
+    print('')
+    print(('Player: {}! Computer: {}! Ties: {}!').format(player_score, cpu_score, tie_score))
+    print('')
+    again()
+    print('')
+   
+  if player == 'paper':
+    if comp == 'paper':
+      print('Tie!')
+      tie_score += 1
+    elif comp == 'scissors':
+      print('You lost!')
+      cpu_score += 1
+    else:
+      print('You win!')
+      player_score += 1
+    print('')
+    print(('Player: {}! Computer: {}! Ties: {}!').format(player_score, cpu_score, tie_score))
+    print('')
+    again()
+    print('')
+   
+  if player == 'scissors':
+    if comp == 'scissors':
+      print('Tie!')
+      tie_score += 1
+    if comp == 'paper':
+      print('You win!')
+      player_score += 1
+    if comp == 'rock':
+      print('You lost!')
+      cpu_score += 1
+    print('')
+    print(('Player: {}! Computer: {}! Ties: {}!').format(player_score, cpu_score, tie_score))
+    print('')
+    again()
+    print('')
+  else:
+    print(('{} is an invalid throw.').format(player))
+    print('')
+    game()
+ 
+game()
